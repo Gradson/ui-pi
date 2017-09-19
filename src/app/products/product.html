@@ -1,0 +1,65 @@
+<div ng-controller="ProductController as crtl" layout="column" layout-align="none none" ng-cloak>
+
+  <md-content class="flexbox-parent">
+    <form name="productForm">
+      <div layout="row" layout-align="center center">
+        <md-input-container class="md-block" flex="50">
+          <label>Name</label>
+          <input md-maxlength="30" required name="name" ng-model="crtl.product.name" />
+
+          <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+
+          <div ng-messages="productForm.name.$error" ng-if="!showHints">
+            <div ng-message="required">Name is required.</div>
+            <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row" layout-align="center center">
+        <md-input-container class="md-block" flex="50">
+          <label>Description</label>
+          <input md-maxlength="100" required name="description" ng-model="crtl.product.description" />
+
+          <div class="hint" ng-if="showHints">Tell us what we should call you!</div>
+
+          <div ng-messages="productForm.description.$error" ng-if="!showHints">
+            <div ng-message="required">Name is required.</div>
+            <div ng-message="md-maxlength">The name has to be less than 100 characters long.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary" ng-click="crtl.save()">Save</md-button>
+        <md-button class="md-raised md-warn" ng-click="crtl.clear()">Cancel</md-button>
+      </section>
+
+      <style>
+      /*
+      * The Material demos system does not currently allow targeting the body element, so this
+      * must go here in the HTML.
+      */
+      body[dir=rtl] .hint {
+        right: 2px;
+        left: auto;
+      }
+      </style>
+    </form>
+  </md-content>
+
+  <md-divider></md-divider>
+
+  <md-content class="flexbox-parent">
+    <md-list ng-controller="ProductController" ng-cloak>
+      <md-subheader class="md-no-sticky">Products</md-subheader>
+      <md-list-item ng-repeat="product in product.list">
+        <p> {{ product.name }} </p>
+        <md-checkbox class="md-secondary" ng-model="product.wanted"></md-checkbox>
+      </md-list-item>
+
+      <md-divider></md-divider>
+    </md-list>
+  </md-content>
+
+</div>

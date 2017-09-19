@@ -1,0 +1,64 @@
+<div ng-controller="InvoiceController as ctrl" layout="column" layout-align="none none" ng-cloak>
+
+  <md-content class="flexbox-parent">
+    <form name="invoiceForm">
+      <div layout="row" layout-align="center center">
+        <md-input-container class="md-block" flex="50">
+          <label>Number</label>
+          <input md-maxlength="10" required name="number" ng-model="invoice.number" />
+
+          <div class="hint" ng-if="showHints">Insert the number</div>
+
+          <div ng-messages="invoiceForm.number.$error" ng-if="!showHints">
+            <div ng-message="required">Number is required.</div>
+            <div ng-message="md-maxlength">The number has to be less than 10 characters long.</div>
+          </div>
+        </md-input-container>
+      </div>
+
+      <div layout="row" layout-align="center center">
+        <md-input-container class="md-block" flex="50">
+          <label>Observation</label>
+          <input md-maxlength="100" ng-model="invoice.observation" />
+        </md-input-container>
+      </div>
+
+      <div layout="row" layout-align="center center" flex="100">
+        <md-input-container class="md-block" flex="20">
+          <md-select multiple ng-model="ctrl.itens" placeholder="please select">
+            <md-option ng-repeat="item in ctrl.itens" value="{{item}}">{{item }}</md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container class="md-block" flex="20">
+          <label>Observation</label>
+          <input md-maxlength="100" ng-model="invoice.observation" />
+        </md-input-container>
+      </div>
+      </div>
+      <style>
+      /*
+      * The Material demos system does not currently allow targeting the body element, so this
+      * must go here in the HTML.
+      */
+      body[dir=rtl] .hint {
+        right: 2px;
+        left: auto;
+      }
+      </style>
+
+    </form>
+  </md-content>
+
+</div>
+  <md-divider></md-divider>
+<div layout="row" layout-align="center center"
+  <md-list ng-controller="InvoiceController" ng-cloak>
+    <md-subheader class="md-no-sticky">Invoices</md-subheader>
+    <md-list-item ng-repeat="invoice in invoices">
+      <p> {{ invoice.number }} </p>
+      <md-checkbox class="md-secondary" ng-model="invoice.wanted"></md-checkbox>
+    </md-list-item>
+
+    <md-divider></md-divider>
+  </md-list>
+</div>
