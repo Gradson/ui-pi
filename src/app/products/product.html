@@ -53,7 +53,7 @@
   <md-content class="flexbox-parent">
     <md-list ng-controller="ProductController" ng-cloak>
       <md-subheader class="md-no-sticky">Products</md-subheader>
-      <md-list-item ng-repeat="product in product.list">
+      <md-list-item ng-repeat="product in crtl.list">
         <p> {{ product.name }} </p>
         <md-checkbox class="md-secondary" ng-model="product.wanted"></md-checkbox>
       </md-list-item>

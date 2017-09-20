@@ -4,7 +4,7 @@ export class InvoiceService {
 
     this.$log = $log;
     this.$http = $http;
-    this.apiHost = 'http://localhost:8080/atech/apiHost/invoices';
+    this.apiHost = 'http://localhost:8080/atech/api/invoices';
   }
 
   getAll() {
@@ -23,5 +23,13 @@ export class InvoiceService {
     }).catch((error) => {
       this.$log.error('XHR Failed for Invoice.\n' + angular.toJson(error.data, true));
     });
+  }
+
+  search(productName) {
+    return this.$http.get(this.apiHost+"/search", {params:{'productName':productName}}).then((response) => {
+      return response.data;
+    }).catch((error) => {
+      this.$log.error('XHR Failed for Invoice.\n' + angular.toJson(error.data, true));
+    })
   }
 }

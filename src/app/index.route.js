@@ -16,6 +16,11 @@ export function routerConfig ($routeProvider) {
       controller: 'InvoiceController',
       controllerAs: 'invoice'
     })
+    .when('/invoices-list', {
+      templateUrl: 'app/invoices/invoice-list.html',
+      controller: 'InvoiceController',
+      controllerAs: 'invoice'
+    })
     .otherwise({
       redirectTo: '/'
     });

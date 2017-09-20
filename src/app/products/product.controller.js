@@ -14,7 +14,6 @@ export class ProductController {
 
   load() {
     this.service.getAll().then((data) => {
-      this.product = data.content[0];
       this.list = data.content;
     });
   }
