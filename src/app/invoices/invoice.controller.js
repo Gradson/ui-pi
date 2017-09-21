@@ -24,8 +24,8 @@ export class InvoiceController {
     });
   }
 
-  search(productName) {
-    this.service.search(productName).then((data) => {
+  search(invoiceSearch) {
+    this.service.search(invoiceSearch).then((data) => {
       this.list = data.content;
     })
   }

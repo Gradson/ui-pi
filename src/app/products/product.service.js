@@ -1,9 +1,10 @@
 export class ProductService {
-  constructor ($log, $http) {
+  constructor ($log, $http, toastr) {
     'ngInject';
 
     this.$log = $log;
     this.$http = $http;
+    this.toastr = toastr;
     this.apiHost = 'http://localhost:8080/atech/api/products';
   }
 
@@ -13,6 +14,7 @@ export class ProductService {
         return response.data;
       })
       .catch((error) => {
+        this.toastr.error('Sorry, ' + error.data.error);
         this.$log.error('XHR Failed for getContributors.\n' + angular.toJson(error.data, true));
       });
   }
@@ -24,9 +26,11 @@ export class ProductService {
             data: product,
             headers: {'Content-Type': 'application/json'}
     }).then((response) => {
+        this.toastr.success(product.name + ' saved!');
         return response.data;
       })
       .catch((error) => {
+        this.toastr.error('Sorry, ' + error.data.error);
         this.$log.error('XHR Failed for getContributors.\n' + angular.toJson(error.data, true));
       });
   }
